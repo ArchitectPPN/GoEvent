@@ -4,6 +4,7 @@ import (
 	"EventTools/EventDealTypeConst"
 	"EventTools/EventParams"
 	"EventTools/EventToolFactory"
+	"fmt"
 	"github.com/google/uuid"
 )
 
@@ -13,7 +14,11 @@ func main() {
 
 func listenAndTrigger() {
 	event := new(EventToolFactory.Factory)
-	eventTools := event.CreatEventTools()
+	eventTools, err := event.CreatEventTools()
+	if err != nil {
+		fmt.Println("err: ", err)
+		return
+	}
 
 	eventKey := uuid.New().String()
 	// 设置监听事件的参数
